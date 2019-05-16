@@ -30,7 +30,7 @@ public class MessageReceiverController {
 				@RequestParam("timestamp") String timestamp, //
 				@RequestParam("nonce") String nonce, //
 				@RequestBody String xml) {
-			LOG.trace("收到用户发送给公众号的信息: \n-----------------------------------------\n"
+			LOG.debug("收到用户发送给公众号的信息: \n-----------------------------------------\n"
 					+ "{}\n-----------------------------------------\n", xml);
 			
 			return "success";
