@@ -12,7 +12,7 @@
 		<version>2.1.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>org.kfjava</groupId>
+	<groupId>org.lpjava</groupId>
 	<artifactId>weixin</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>weixin</name>
