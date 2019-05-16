@@ -26,7 +26,7 @@
 		<!-- 生成的报告使用的字符编码 -->
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
-
+<dependencies>
 <!-- JAXB的API，一般引入Spring、JPA相关的依赖以后，往往都会有 -->
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
@@ -98,5 +98,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
+</dependencies>
 </project>
