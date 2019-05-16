@@ -1,5 +1,11 @@
 package org.lpjava.weixin.controller;
 
+import java.io.StringReader;
+
+import javax.xml.bind.JAXB;
+
+import org.lpjava.weixin.domain.InMessage;
+import org.lpjava.weixin.service.MessageTypeMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +39,14 @@ public class MessageReceiverController {
 			LOG.debug("收到用户发送给公众号的信息: \n-----------------------------------------\n"
 					+ "{}\n-----------------------------------------\n", xml);
 			
+			String type = xml.substring(xml.indexOf("<MsgType><![CDATA[") + 18);
+			type = type.substring(0, type.indexOf("]]></MsgType>"));
+            Class<InMessage> cla = MessageTypeMapper.getClass(type);
+			InMessage inMessage = JAXB.unmarshal(new StringReader(xml),cla);
+			
+			LOG.debug("转换得到的消息对象 \n{}\n", inMessage.toString());
+            
+            
 			return "success";
  }
 }
