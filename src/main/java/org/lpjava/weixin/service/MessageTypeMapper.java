@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.lpjava.weixin.domain.InMessage;
+import org.lpjava.weixin.domain.event.EventInMessage;
 import org.lpjava.weixin.domain.text.TextInMessage;
 
 public class MessageTypeMapper {
@@ -18,6 +19,7 @@ public class MessageTypeMapper {
     	typeMap.put("video",TextInMessage.class);
     	typeMap.put("shortvideo",TextInMessage.class);
     	typeMap.put("voice",TextInMessage.class);
+    	typeMap.put("event",EventInMessage.class);
     	
     }
     @SuppressWarnings("unchecked")

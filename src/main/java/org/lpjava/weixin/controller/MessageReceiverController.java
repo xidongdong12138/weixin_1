@@ -59,25 +59,28 @@ public class MessageReceiverController {
 			
 			LOG.debug("转换得到的消息对象 \n{}\n", inMessage.toString());
 			
-			inMessageTemplate.execute(new RedisCallback<String>() {
-				@Override
-				public String doInRedis(RedisConnection connection) throws DataAccessException {
-					try {
-					// TODO Auto-generated method stub
-					
-					String channel = "lplp_1_" + inMessage.getMsgType();
-					ByteArrayOutputStream out = new ByteArrayOutputStream();// 输出流
-					ObjectOutputStream oos = new ObjectOutputStream(out);
-					oos.writeObject(inMessage);
-					
-					Long l = connection.publish(channel.getBytes(), out.toByteArray());
-					System.out.println("发布结果：" + l);
-					} catch (Exception e) {
-						LOG.error("把消息放入队列时出现问题：" + e.getLocalizedMessage(), e);
-					}
-					return null;
-				}
-			});
+			
+			inMessageTemplate.convertAndSend("lplp_1_" + inMessage.getMsgType(), inMessage);
+			
+//			inMessageTemplate.execute(new RedisCallback<String>() {
+//				@Override
+//				public String doInRedis(RedisConnection connection) throws DataAccessException {
+//					try {
+//					// TODO Auto-generated method stub
+//					
+//					String channel = "lplp_1_" + inMessage.getMsgType();
+//					ByteArrayOutputStream out = new ByteArrayOutputStream();// 输出流
+//					ObjectOutputStream oos = new ObjectOutputStream(out);
+//					oos.writeObject(inMessage);
+//					
+//					Long l = connection.publish(channel.getBytes(), out.toByteArray());
+//					System.out.println("发布结果：" + l);
+//					} catch (Exception e) {
+//						LOG.error("把消息放入队列时出现问题：" + e.getLocalizedMessage(), e);
+//					}
+//					return null;
+//				}
+//			});
 			
 
 			return "success";
